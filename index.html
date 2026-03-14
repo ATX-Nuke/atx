@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATX · 核爆中隊 官方入口</title>
-    <!-- 引入字型與基礎樣式 -->
+    <title>ATX核爆 · 開發者檔案</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,496 +16,560 @@
         }
 
         body {
-            background-color: #0b0c0e;
-            background-image: radial-gradient(circle at 30% 10%, rgba(45, 0, 45, 0.5) 0%, transparent 40%),
-                              radial-gradient(circle at 80% 70%, rgba(100, 0, 80, 0.3) 0%, transparent 50%);
-            font-family: 'Inter', sans-serif;
-            color: #e2e2e2;
-            line-height: 1.5;
+            background-color: #03050a;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255, 0, 0, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 85% 70%, rgba(255, 0, 128, 0.1) 0%, transparent 40%),
+                linear-gradient(145deg, #010101 0%, #0c0f17 100%);
+            color: #e0f0ff;
+            font-family: 'Rajdhani', sans-serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 1300px;
-            width: 90%;
-            margin: 0 auto;
-            padding: 2rem 0 4rem;
-        }
-
-        /* 頭部區域 */
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 3.5rem;
             position: relative;
+            overflow-x: hidden;
         }
 
-        .logo-wrapper {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #1a1a2e, #0f0f1f);
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, 
+                rgba(255, 0, 0, 0.03) 0px, 
+                rgba(0, 0, 0, 0.6) 1px, 
+                transparent 2px,
+                transparent 8px);
+            pointer-events: none;
+            z-index: 1;
+            animation: scan 14s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 25px; }
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wMjUiIC8+PC9zdmc+');
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .entry-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a0000 0%, #000000 100%);
             display: flex;
-            align-items: center;
             justify-content: center;
-            box-shadow: 0 0 25px #b300b3, 0 0 60px #5a005a;
-            border: 2px solid #a335b3;
-            margin-bottom: 1.8rem;
-        }
-
-        .logo-wrapper img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ff44e6;
-        }
-
-        .atx-badge {
-            background: #0d0b16;
-            border: 1px solid #bf40bf;
-            color: #ff9dff;
-            font-weight: 700;
-            font-size: 1.1rem;
-            padding: 0.4rem 1.8rem;
-            border-radius: 40px;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            box-shadow: 0 0 15px #c715c7;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            background: linear-gradient(130deg, #ff6bff, #b13eb1, #ff3d9a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px #ff0066;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .subhead {
-            font-size: 1.3rem;
-            color: #b9b9dc;
-            max-width: 700px;
-            border-bottom: 1px dashed #5f3f6b;
-            padding-bottom: 1.2rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .join-btn {
-            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: #5865F2;
-            color: white;
-            font-weight: 700;
-            font-size: 1.4rem;
-            padding: 0.9rem 2.8rem;
-            border-radius: 60px;
-            text-decoration: none;
-            box-shadow: 0 10px 25px #5865F2, 0 0 30px #a6238a;
-            transition: 0.2s ease;
-            border: 1px solid #9b84ff;
-            margin-top: 1.2rem;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            transition: opacity 1.2s cubic-bezier(0.86, 0, 0.07, 1), visibility 1.2s ease;
+            opacity: 1;
+            visibility: visible;
         }
 
-        .join-btn:hover {
-            background: #4752c4;
-            box-shadow: 0 10px 30px #7b2ed6, 0 0 40px #ff30b0;
+        .entry-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .cyber-button {
+            background: transparent;
+            border: 1.8px solid #ff3333;
+            color: #ff7777;
+            font-family: 'Share Tech Mono', 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0.7rem 2.0rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 0 0 15px #ff0000, 0 0 30px #ff3366;
+            box-shadow: 0 0 20px #ff2222, 0 0 50px #ff0066, inset 0 0 15px #ff4444;
+            transition: 0.3s;
+            animation: pulse-red 2s infinite alternate;
+            position: relative;
+            background: rgba(180, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 0;
+        }
+
+        .cyber-button:hover {
+            letter-spacing: 10px;
+            background: rgba(255, 0, 0, 0.25);
+            border-color: #ff0066;
+            box-shadow: 0 0 45px #ff3300, 0 0 90px #ff00aa;
             transform: scale(1.02);
         }
 
-        .join-btn img {
-            width: 32px;
-            height: 32px;
-            filter: brightness(0) invert(1);
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 15px #ff3333, 0 0 30px #ff0066; }
+            100% { box-shadow: 0 0 45px #ff0066, 0 0 90px #ff3300; }
         }
 
-        /* 重點指標/破壞力展示 */
-        .stats-panel {
+        .cyber-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(50px) scale(0.98);
+            transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+        }
+
+        .cyber-wrapper.reveal {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .header {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #ff3366, #ff0000, #ff3399) 1;
+            padding: 1.5rem 0 1rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem 3.5rem;
-            background: rgba(20, 12, 28, 0.7);
+            gap: 20px;
+            background: rgba(20, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            border: 1px solid #7a2a7a;
-            border-radius: 70px;
-            padding: 1.6rem 3rem;
-            margin: 2.5rem 0 2rem;
-            box-shadow: 0 0 35px #990099;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-shadow: 0 10px 30px -10px rgba(255, 0, 0, 0.4);
         }
 
-        .stat-item {
+        .logo h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff5555, #ff00aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px #ff3333, 0 0 45px #ff00b3;
+            letter-spacing: 5px;
+        }
+
+        .logo .sub {
+            font-size: 1.1rem;
+            color: #ffb3b3;
+            border-left: 4px solid #ff0066;
+            padding-left: 15px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .status-panel {
+            background: rgba(255, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid #ff3366;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4), inset 0 0 10px rgba(255, 0, 128, 0.3);
+            display: flex;
+            gap: 35px;
+        }
+
+        .status-item {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .stat-number {
-            font-size: 2.3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #f4b4ff, #d07cff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #c09ac7;
+        .status-label {
+            font-size: 0.7rem;
+            color: #ffaaaa;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: 'Share Tech Mono', monospace;
         }
 
-        /* 介紹卡：兩個機器人 */
-        .section-title {
-            font-size: 2.5rem;
+        .status-value {
             font-weight: 700;
-            text-align: center;
-            margin: 3rem 0 1rem;
-            color: #f0c4f0;
-            text-shadow: 0 0 10px #ff80ff;
+            font-size: 1.5rem;
+            color: #ff88aa;
+            text-shadow: 0 0 12px #ff0066;
         }
 
-        .section-sub {
-            text-align: center;
-            color: #a28ba8;
-            margin-bottom: 3rem;
-            font-size: 1.2rem;
-        }
-
-        .bot-grid {
+        .nav-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 8px;
+            margin-bottom: 35px;
+            border: 1px solid #ff4466;
+            padding: 22px 18px;
+            background: rgba(30, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
             justify-content: center;
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.3), inset 0 0 20px rgba(255, 0, 128, 0.2);
         }
 
-        .bot-card {
-            background: rgba(10, 5, 18, 0.85);
-            backdrop-filter: blur(5px);
-            border: 1px solid #c44bc4;
-            border-radius: 40px;
-            padding: 2rem 1.8rem 2rem 1.8rem;
-            flex: 1 1 380px;
-            max-width: 480px;
-            box-shadow: 0 20px 35px #00000099, 0 0 55px #9d2d9d;
-            transition: 0.2s;
-        }
-
-        .bot-card:hover {
-            border-color: #ff80ff;
-            box-shadow: 0 20px 45px #bf32bf;
-        }
-
-        .bot-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bot-name span {
-            background: #28243f;
-            font-size: 1rem;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            color: #e2b0ff;
-            border: 1px solid #b55ab5;
-        }
-
-        .bot-desc {
-            font-size: 1.1rem;
-            color: #cdc1d9;
-            margin: 1.2rem 0 1.5rem;
-            border-left: 4px solid #b300b3;
-            padding-left: 1rem;
-        }
-
-        .feature-list {
-            list-style: none;
-        }
-
-        .feature-list li {
-            margin-bottom: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            background: rgba(255, 230, 255, 0.03);
-            padding: 0.4rem 0.8rem;
-            border-radius: 30px;
-            border: 1px solid #3f2742;
-        }
-
-        .feature-list img {
-            width: 22px;
-            height: 22px;
-            filter: invert(72%) sepia(79%) saturate(2149%) hue-rotate(226deg);
-        }
-
-        .code-snippet {
-            background: #0b0412;
-            border: 1px solid #833b83;
-            border-radius: 24px;
-            padding: 1.2rem;
-            margin: 1.5rem 0 0.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: #f0aaf0;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-word;
-            box-shadow: inset 0 0 20px #2e0030;
-        }
-
-        .badge-pro {
-            background: #a020f0;
-            border-radius: 60px;
-            padding: 0.1rem 1rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: black;
-            text-transform: uppercase;
-        }
-
-        .command-hint {
-            color: #ebc0ff;
-            font-weight: 700;
-            background: #2b1d35;
-            display: inline-block;
-            padding: 0.3rem 1.2rem;
-            border-radius: 30px;
-            border: 1px solid #c56bc5;
-            font-size: 1.2rem;
-            margin-top: 1rem;
-        }
-
-        .footer {
-            margin-top: 5rem;
-            text-align: center;
-            border-top: 1px solid #522d5e;
-            padding-top: 2.5rem;
-            color: #8b6d97;
-        }
-
-        .discord-link {
-            color: #c57bff;
+        .page-btn {
+            background: transparent;
+            border: 1.5px solid #ff5555;
+            color: #ffdddd;
+            font-family: 'Orbitron', sans-serif;
             font-weight: 600;
-            text-decoration: none;
-            border-bottom: 1px dotted;
+            font-size: 0.85rem;
+            padding: 12px 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            transition: 0.2s;
+            backdrop-filter: blur(8px);
+            border-radius: 0;
+            box-shadow: inset 0 0 0px transparent, 0 0 10px #ff3333;
+            flex: 1 0 auto;
+            max-width: 145px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .glow {
-            text-shadow: 0 0 8px #ff89ff;
-        }
-
-        /* 背景骷髏裝飾 (純css) */
-        .skull-divider {
+        .page-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            text-align: center;
-            font-size: 2rem;
-            opacity: 0.3;
-            margin: 1rem 0;
-            letter-spacing: 10px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+            transition: left 0.5s;
         }
+
+        .page-btn:hover::before {
+            left: 100%;
+        }
+
+        .page-btn i {
+            margin-right: 5px;
+            color: #ff8888;
+            filter: drop-shadow(0 0 5px red);
+        }
+
+        .page-btn.active {
+            background: rgba(255, 0, 0, 0.25);
+            color: #fff;
+            border-color: #ff00aa;
+            box-shadow: 0 0 30px #ff0066, 0 0 15px #ff4444;
+            text-shadow: 0 0 8px black;
+        }
+
+        .page-container {
+            background: rgba(10, 0, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #ff4466;
+            box-shadow: 0 0 70px rgba(255, 0, 64, 0.3), inset 0 0 40px rgba(255, 0, 0, 0.2);
+            padding: 3rem 2.5rem;
+            margin-top: 25px;
+        }
+
+        .page {
+            display: none;
+            animation: slideFade 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes slideFade {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            border-left: 12px solid #ff0066;
+            padding-left: 25px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #fff, #ff7777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px #ff3333;
+        }
+
+        h2 i {
+            margin-right: 16px;
+            color: #ff3366;
+        }
+
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .dev-card {
+            background: rgba(40, 0, 10, 0.7);
+            border: 2px solid #ff4466;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: -8px 8px 0px #ff3366;
+            transition: 0.25s;
+            backdrop-filter: blur(8px);
+        }
+        .dev-card:hover {
+            transform: translateY(-8px) translateX(5px);
+            border-color: #ff00aa;
+            box-shadow: -12px 15px 0px #ff0066, 0 0 40px #ff4444;
+        }
+        .dev-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff0066;
+            margin: 0 auto 20px;
+            background: #330000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ffaaaa;
+            box-shadow: 0 0 40px #ff2222;
+            overflow: hidden;
+        }
+        .dev-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .dev-id {
+            font-family: 'Share Tech Mono', monospace;
+            background: #1a0000;
+            padding: 8px;
+            border: 1px solid #ff3366;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+        .dev-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffbbbb;
+            text-shadow: 0 0 10px red;
+        }
+        .dev-bio {
+            color: #ffaaaa;
+            margin: 15px 0;
+        }
+
+        .detail-text { font-size:1.2rem; line-height:1.8; background:rgba(50,0,0,0.3); padding:25px; border:1px dashed #ff4466; margin-bottom:30px; }
+        .detail-list { list-style:none; } .detail-list li { margin:15px 0; border-bottom:1px solid #ff3355; padding-bottom:10px; display:flex; align-items:center; } .detail-list li i { width:35px; color:#ff3366; font-size:1.6rem; }
+        .spec-grid, .data-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:25px; margin:30px 0; }
+        .spec-card { background:rgba(40,0,10,0.7); border:1px solid #ff5555; padding:22px; box-shadow:-5px 5px 0px #ff3366; transition:0.25s; }
+        .spec-card:hover { transform:translateY(-8px) translateX(4px); border-color:#ff00aa; box-shadow:-10px 12px 0px #ff0066, 0 0 35px #ff4444; }
+        .spec-label { color:#ff9999; font-family:'Orbitron',sans-serif; font-weight:600; text-transform:uppercase; }
+        .spec-value { font-size:2.2rem; font-weight:700; color:#ffbbbb; text-shadow:0 0 8px #ff0066; }
+        .cmd-table { width:100%; border-collapse:collapse; font-size:1.2rem; }
+        .cmd-table th { background:rgba(255,0,102,0.4); border:1px solid #ff5555; font-family:'Orbitron',sans-serif; padding:14px; }
+        .cmd-table td { border:1px solid #ff4466; padding:18px 20px; }
+        .badge { background:linear-gradient(145deg, #ff0066, #990033); color:white; font-weight:700; padding:6px 16px; font-size:0.9rem; display:inline-block; letter-spacing:2px; box-shadow:0 0 15px #ff3366; }
+        .feature-banner { background:linear-gradient(105deg, rgba(180,0,60,0.3) 0%, rgba(255,0,0,0.2) 100%); border-left:8px solid #ff0066; border-right:8px solid #ff5555; padding:35px 30px; margin:40px 0; font-size:1.3rem; }
+        .join-area { text-align:center; border:2px solid #ff3366; padding:50px; background:rgba(40,0,0,0.8); box-shadow:inset 0 0 70px rgba(255,0,64,0.3); }
+        .join-btn { background:transparent; border:4px solid #ff0066; color:#fff; font-size:2rem; padding:20px 60px; font-family:'Orbitron',sans-serif; font-weight:700; letter-spacing:8px; cursor:pointer; transition:0.3s; box-shadow:0 0 50px #ff0066; margin-top:20px; }
+        .join-btn:hover { background:#ff0066; color:#000; border-color:#ffaaaa; box-shadow:0 0 100px #ff2222; }
+        footer a { color:#ff6699; text-decoration:none; border-bottom:1px dotted #ff0066; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 頭部區域 -->
-        <div class="header">
-            <div class="logo-wrapper">
-                <!-- 使用ATX的實際頭像連結 (與程式碼內一致) -->
-                <img src="https://i.pinimg.com/736x/3e/6c/8d/3e6c8d227acc093252f8a0b6940d40dd.jpg" alt="ATX skull logo">
-            </div>
-            <div class="atx-badge">⚰️ 核 心 中 隊 ⚰️</div>
-            <h1>ATX  NUCLEAR</h1>
-            <div class="subhead">最凶殘的 Discord 核爆機器人 · 不留活口</div>
-            
-            <!-- 主要加入連結 (Discord) -->
-            <a href="https://discord.gg/atx0" class="join-btn" target="_blank" rel="noopener">
-                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/663e5e4f44c68ad5f4b63f34_636e0a6ac3c481f273141736_icon_clyde_white_RGB.svg" alt="Discord">
-                加入 ATX 總部
-            </a>
-
-            <!-- 數據面板（取自程式碼參數） -->
-            <div class="stats-panel">
-                <div class="stat-item">
-                    <span class="stat-number">18</span>
-                    <span class="stat-label">訊息/頻道</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">60</span>
-                    <span class="stat-label">頻道創造</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">垃圾角色</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">40s</span>
-                    <span class="stat-label">冷卻</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 兩個機器人介紹 (程式碼幾乎相同但分為兩個實例, 我們呈現為變體A / 變體B) -->
-        <div class="section-title">💀 雙 重 毀 滅  💀</div>
-        <div class="section-sub">兩種破壞引擎 · 同樣由 ATX 核心驅動</div>
-
-        <div class="bot-grid">
-            <!-- 機器人 1 - ATX Nuclear v2 (原始) -->
-            <div class="bot-card">
-                <div class="bot-name">
-                    🔥 ATX NUKER 2.0 
-                    <span>public</span>
-                </div>
-                <div class="bot-desc">
-                    全自動伺服器熔化器 · 加入即觸發
-                </div>
-                <ul class="feature-list">
-                    <li><img src="https://cdn.discordapp.com/emojis/1067179646037864498.webp?size=32&quality=lossless" alt="skull"> 60 個亂碼頻道 + 特殊字體名稱</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1251157298570002462.webp?size=32&quality=lossless" alt="hammer"> 批量刪除頻道/角色 (批次60/50)</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1071552015084294195.webp?size=32&quality=lossless" alt="embed"> 富攻擊 Embed + GIF + 宣傳影片</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1263199855110848584.webp?size=32&quality=lossless" alt="ban"> 自動Ban全員 (除了機器人自己)</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1182795633124253806.webp?size=32&quality=lossless" alt="shield"> 白名單保護 (ID: 1480934063362801674)</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1209196344778096650.webp?size=32&quality=lossless" alt="log"> 攻擊日誌頻道 #1482046312479330476</li>
-                </ul>
-                <div class="code-snippet">
-# 觸發指令 .no   |   冷卻40s <br>
-# 自動加入即炸 (白名單除外)<br>
-NEW_GUILD_NAME = "💀ATX NUKED"<br>
-CHANNEL_NAMES = 風格多變的「atx-nuked」<br>
-EMBED 內建影片: https://discord.gg/PayJFpBh5s
-                </div>
-                <div class="command-hint">
-                    .no  — 即 刻 核 爆
-                </div>
-            </div>
-
-            <!-- 機器人 2 - 複製品但標示為 ATX NUCLEAR X (第二份代碼完全相同，但我們展示它的獨立性) -->
-            <div class="bot-card">
-                <div class="bot-name">
-                    ⚡ ATX NUCLEAR X 
-                    <span>elite</span>
-                </div>
-                <div class="bot-desc">
-                    平行運算版 · 雙重任務同時執行
-                </div>
-                <ul class="feature-list">
-                    <li><img src="https://cdn.discordapp.com/emojis/1067179646037864498.webp?size=32&quality=lossless" alt="skull"> 同樣批量刪建頻道＋更名伺服器</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1251157298570002462.webp?size=32&quality=lossless" alt="hammer"> 修改全體綽號為「💀 ATX 🔪」</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1071552015084294195.webp?size=32&quality=lossless" alt="embed"> 進階嵌入循環 x18 (使用 aiohttp)</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1263199855110848584.webp?size=32&quality=lossless" alt="ban"> 超快速BAN人 (分批次非同步)</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1182795633124253806.webp?size=32&quality=lossless" alt="shield"> 白名單迴避 + 邀請者紀錄</li>
-                    <li><img src="https://cdn.discordapp.com/emojis/1209196344778096650.webp?size=32&quality=lossless" alt="log"> 相同的log頻道，集中戰果</li>
-                </ul>
-                <div class="code-snippet">
-# 第二核彈頭 (identical core)<br>
-MESSAGE_REPEAT_COUNT = 18  <br>
-CHANNEL_COUNT = 60  |  BATCH_SIZE 30~100<br>
-# 自動偵測邀請人 (audit log)<br>
-垃圾角色建立: ATX-role-xxx (50個)
-                </div>
-                <div class="command-hint">
-                    .no  — 雙 倍 毀 滅
-                </div>
-            </div>
-        </div>
-
-        <!-- 額外資訊：內部運作特點 -->
-        <div style="margin-top: 3.5rem; background: rgba(0,0,0,0.4); border-radius: 50px; padding: 2rem 2rem; border: 1px solid #7f3f7f;">
-            <h2 style="text-align: center; font-size: 1.9rem; margin-bottom: 1.8rem; color: #f0bef0;">⚙️ 核心機制（兩者共通）</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
-                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">⏱️</div>
-                    <div style="font-weight: bold; font-size: 1.2rem;">批次非同步</div>
-                    <div style="color: #bc9ec2;">批量刪除頻道/角色 配合asyncio.gather，極速執行</div>
-                </div>
-                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
-                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">🔁</div>
-                    <div style="font-weight: bold; font-size: 1.2rem;">冷卻 & 白名單</div>
-                    <div style="color: #bc9ec2;">WHITELIST_GUILD_ID 保護總部；每人40秒限制</div>
-                </div>
-                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
-                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">📹</div>
-                    <div style="font-weight: bold; font-size: 1.2rem;">宣傳影片/GIF</div>
-                    <div style="color: #bc9ec2;">攻擊時附帶 ATX  promo 影片 (cdn連結) 與動態旗幟</div>
-                </div>
-                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
-                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">📋</div>
-                    <div style="font-weight: bold; font-size: 1.2rem;">日誌紀錄</div>
-                    <div style="color: #bc9ec2;">每次核爆後傳送伺服器狀態至 Log 頻道</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 展示部分程式碼片段 (強調兩者相同但獨立) -->
-        <div style="margin: 3.5rem 0 1rem;">
-            <div style="background: #110c1a; border-radius: 36px; padding: 1.8rem; border: 1px solid #a14da1;">
-                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center;">
-                    <div style="font-family: monospace; background: #050108; padding: 1.2rem; border-radius: 24px; flex:2; overflow-x: auto;">
-                        <span style="color:#b380ff;">async def</span> <span style="color:#ffb3ff;">nuke_guild_ultra</span>(guild, ctx=None, inviter=None):<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;global is_nuking, current_tasks<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;is_nuking = <span style="color:#8df">True</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;await log_action(guild, inviter)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6f6"># 並發執行 改名 / 換頭像 / 改nick</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;name_task = asyncio.create_task(change_guild_name_ultra(guild, NEW_GUILD_NAME))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;icon_task = asyncio.create_task(change_guild_icon_ultra(guild, AVATAR_URL))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;...<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6f6"># 刪除所有頻道 -> 建立60個新頻道 -> 垃圾訊息 -> 角色轟炸 -> ban</span>
-                    </div>
-                    <div style="flex:1; min-width:160px; text-align:center">
-                        <div style="background:#b300b3; width: fit-content; margin:0 auto; padding:0.5rem 2rem; border-radius:60px; font-weight:700;">⬇️ 完全相同</div>
-                        <div style="margin-top:1.2rem; color:#cc99ff;">兩份核彈腳本<br>雙重存在 更難防範</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 再次強調加入連結 -->
-        <div style="text-align: center; margin: 4rem 0 2rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 1.2rem;">💀 <span class="glow">想要擁有 ATX 毀滅力量？</span> 💀</div>
-            <a href="https://discord.gg/atx0" class="join-btn" style="font-size: 1.8rem; padding: 1rem 4rem;" target="_blank">
-                ➤ 加入 ATX 後台 ➤
-            </a>
-            <div style="margin-top: 1.5rem; color:#887a92">點擊連結立即加入 Discord &nbsp; <span style="background:#33223b; padding:0.3rem 1rem; border-radius:30px;">discord.gg/atx0</span></div>
-        </div>
-
-        <!-- 白名單/日誌等額外細節 -->
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; background: #130d1b; border-radius: 60px; padding: 2rem; margin-top: 3rem;">
-            <div>
-                <span style="color: #c58aff;">⚪ 白名單伺服器 ID</span><br>
-                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px; font-family: monospace;">1480934063362801674</span>
-            </div>
-            <div>
-                <span style="color: #c58aff;">📁 日誌頻道 ID</span><br>
-                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px; font-family: monospace;">1482046312479330476</span>
-            </div>
-            <div>
-                <span style="color: #c58aff;">👑 擁有者標記</span><br>
-                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px;">by 7z1e. ATX</span>
-            </div>
-        </div>
-
-        <!-- 頁腳 -->
-        <div class="footer">
-            <p>⚠️ 兩份程式碼均為 ATX 核爆機器人 · 僅供內部展示 ⚠️</p>
-            <p>官方連結 <a href="https://discord.gg/atx0" class="discord-link">https://discord.gg/atx0</a> — 加入取得最新核彈版本</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; ATX 銷毀小隊 · 骷髏之下 寸草不生</p>
-        </div>
+    <div class="entry-overlay" id="entryOverlay">
+        <button class="cyber-button" id="enterSystemBtn">Atx/7z1e.//</button>
     </div>
+
+    <div class="cyber-wrapper" id="mainContent">
+        <div class="header">
+            <div class="logo">
+                <h1>ATX NUKE</h1>
+                <div class="sub"><i class="fas fa-skull"></i> 核爆機器人 · 核心開發者 <i class="fas fa-knife"></i></div>
+            </div>
+            <div class="status-panel">
+                <div class="status-item"><span class="status-label">武裝版本</span><span class="status-value">v2.0</span></div>
+                <div class="status-item"><span class="status-label">開發代號</span><span class="status-value">7z1e</span></div>
+                <div class="status-item"><span class="status-label">冷卻</span><span class="status-value">40s</span></div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="page-btn active" data-page="about"><i class="fas fa-skull"></i>關於ATX</button>
+            <button class="page-btn" data-page="core"><i class="fas fa-bolt"></i>核心功能</button>
+            <button class="page-btn" data-page="commands"><i class="fas fa-terminal"></i>機器人指令</button>
+            <button class="page-btn" data-page="specs"><i class="fas fa-microchip"></i>技術規格</button>
+            <button class="page-btn" data-page="fulldesc"><i class="fas fa-book-dead"></i>完整介紹</button>
+            <button class="page-btn" data-page="data"><i class="fas fa-chart-line"></i>效能數據</button>
+            <button class="page-btn" data-page="dev"><i class="fas fa-code"></i>開發者</button>
+            <button class="page-btn" data-page="join"><i class="fas fa-user-plus"></i>加入我們</button>
+        </div>
+
+        <div class="page-container">
+            <div id="page-about" class="page active-page">
+                <h2><i class="fas fa-dragon"></i> 關於 ATX</h2>
+                <div class="detail-text">
+                    <p><i class="fas fa-skull" style="color:#ff3366;margin-right:12px;"></i> <strong>ATX</strong> 成立於2026年，由開發者 <span class="glow-text">7z1e</span> 帶領，專精於 Discord 伺服器壓力測試與安全性審計。我們的核爆機器人是市場上唯一搭載<strong>「自適應排程轟炸引擎」</strong>的工具，能夠模擬極端情況下的伺服器崩潰場景。</p>
+                    <p style="margin-top:20px;">團隊信仰「透過破壞驗證安全」，ATX Nuclear Bot 被設計用於測試管理員的應變能力、伺服器硬體極限以及機器人防範機制。至今已累積超過 1,200 次成功測試案例。</p>
+                </div>
+                <div style="display:flex; gap:25px;flex-wrap:wrap;">
+                    <div class="badge">自研非同步框架</div>
+                    <div class="badge">多節點模擬</div>
+                    <div class="badge">繞行速率限制</div>
+                </div>
+            </div>
+
+            <div id="page-core" class="page">
+                <h2><i class="fas fa-fire"></i> 核心功能</h2>
+                <ul class="detail-list">
+                    <li><i class="fas fa-robot"></i> <strong>自動核爆協議</strong> — 機器人加入後0延遲辨識伺服器，自動執行「頻道刪除/創建/角色清洗」三部曲，全程無需指令。</li>
+                    <li><i class="fas fa-wave-square"></i> <strong>智能頻道轟炸</strong> — 每個新頻道發送18條含ATX標語的核爆訊息，並夾帶隨機表情符號，模仿真人攻擊。</li>
+                    <li><i class="fas fa-user-lock"></i> <strong>大規模成員制裁</strong> — 批次封鎖成員 (50人/批) 並同步修改暱稱為「:skull: ATX :knife:」，製造管理混亂。</li>
+                    <li><i class="fas fa-theater-masks"></i> <strong>角色混淆系統</strong> — 刪除伺服器所有原始角色後，快速建立50個名稱亂數的垃圾角色，干擾權限繼承。</li>
+                    <li><i class="fas fa-tachometer-alt"></i> <strong>自適應冷卻</strong> — 內建40秒延遲，完美避開Discord API的全局速率限制，確保每個批次都成功。</li>
+                </ul>
+            </div>
+
+            <div id="page-commands" class="page">
+                <h2><i class="fas fa-terminal"></i> 機器人指令</h2>
+                <table class="cmd-table">
+                    <tr><th>指令</th><th>參數</th><th>詳細效果</th></tr>
+                    <tr><td><span style="color:#ff8888;">.no</span></td><td>無</td><td>手動觸發完整核爆：頻道刪除(60) → 創建頻道(30) → 發送轟炸訊息 → 角色刪除+創建 → 封鎖成員+修改暱稱。</td></tr>
+                    <tr><td><span style="color:#ff8888;">.nuke fast</span></td><td>無</td><td>跳過冷卻的快速模式 (僅限開發者) 批次量加倍，可能觸發API限制。</td></tr>
+                    <tr><td><span style="color:#ff8888;">.stop</span></td><td>驗證碼</td><td>緊急停止所有進行中的程序，需要授權金鑰。</td></tr>
+                    <tr><td><span class="badge">管理專用</span></td><td>--</td><td>更多隱藏指令僅供內部測試</td></tr>
+                </table>
+            </div>
+
+            <div id="page-specs" class="page">
+                <h2><i class="fas fa-cogs"></i> 技術規格</h2>
+                <div style="display:flex; flex-wrap:wrap; gap:35px;">
+                    <ul style="list-style:none; font-size:1.3rem;">
+                        <li><i class="fas fa-tag icon-bullet"></i> <strong>版本</strong>：Nuclear v2.0.3</li>
+                        <li><i class="fas fa-user-secret icon-bullet"></i> <strong>開發者</strong>：7z1e (資安研究員)</li>
+                        <li><i class="fas fa-code icon-bullet"></i> <strong>語言</strong>：Python 3.10 + C 擴展 (高速雜湊)</li>
+                        <li><i class="fas fa-book icon-bullet"></i> <strong>函式庫</strong>：discord.py 2.3.0、aiohttp、asyncio</li>
+                        <li><i class="fas fa-microchip"></i> <strong>底層</strong>：自訂請求排程器，可繞過 50req/s 限制</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="page-fulldesc" class="page">
+                <h2><i class="fas fa-rocket"></i> 完整伺服器摧毀</h2>
+                <div class="feature-banner">
+                    <p><i class="fas fa-tv icon-bullet"></i> <strong>頻道管理</strong> — 第一階段：刪除現有頻道每次60個，利用平行請求在15秒內清空伺服器；接著創建30個名稱前綴「ATX-」的頻道。</p>
+                    <p><i class="fas fa-comment-dots icon-bullet"></i> <strong>頻道轟炸</strong> — 每個新頻道自動發送18條核爆訊息，內容包含「:skull: ATX owned」、「/nuke complete」等挑釁文字。</p>
+                    <p><i class="fas fa-user-tag icon-bullet"></i> <strong>角色系統</strong> — 刪除伺服器內所有原始角色，瞬間建立50個具有隨機顏色及權限的垃圾角色，名稱模式「NUKE_"+亂數。</p>
+                    <p><i class="fas fa-ban icon-bullet"></i> <strong>成員封鎖</strong> — 分批封鎖所有在線成員，每次50人，並同時將未被封鎖的成員暱稱強制修改為「:skull: ATX :knife:」。</p>
+                    <p><i class="fas fa-clock"></i> <strong>排程與冷卻</strong> — 每完成一批次即進入40秒冷卻，精準模擬長時間攻擊並規避防火牆。</p>
+                </div>
+            </div>
+
+            <div id="page-data" class="page">
+                <h2><i class="fas fa-chart-pie"></i> 效能數據</h2>
+                <div class="data-grid">
+                    <div class="spec-card"><span class="spec-label">最大頻道刪除批次</span><span class="spec-value">60</span></div>
+                    <div class="spec-card"><span class="spec-label">最大頻道創建批次</span><span class="spec-value">30</span></div>
+                    <div class="spec-card"><span class="spec-label">每頻道訊息數</span><span class="spec-value">18</span></div>
+                    <div class="spec-card"><span class="spec-label">垃圾角色創建數</span><span class="spec-value">50</span></div>
+                    <div class="spec-card"><span class="spec-label">成員封鎖批次</span><span class="spec-value">50</span></div>
+                    <div class="spec-card"><span class="spec-label">暱稱修改批次</span><span class="spec-value">100</span></div>
+                    <div class="spec-card"><span class="spec-label">冷卻時間</span><span class="spec-value">40s</span></div>
+                </div>
+            </div>
+
+            <div id="page-dev" class="page">
+                <h2><i class="fas fa-laptop-code"></i> 核心開發者</h2>
+                <div class="dev-grid">
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <img src="https://i.pinimg.com/736x/4f/5f/92/4f5f92e0b2e37fafe6219070828eeee5.jpg" alt="7z1e avatar">
+                        </div>
+                        <div class="dev-name">7z1e</div>
+                        <div class="dev-id"><i class="fas fa-id-card"></i> 1183748865929781254</div>
+                        <div class="dev-bio">創辦人 & 核心架構師。專精於非同步攻擊載荷與API逆向工程。開發核爆引擎核心模組。</div>
+                        <div><span class="badge">lead dev</span> <span class="badge">自適應排程</span></div>
+                    </div>
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <img src="https://i.pinimg.com/736x/33/41/a0/3341a09c7cd9415dce7566720d9c63d9.jpg" alt="神秘人 avatar">
+                        </div>
+                        <div class="dev-name">神秘人</div>
+                        <div class="dev-id"><i class="fas fa-id-card"></i> 1474086484590985389</div>
+                        <div class="dev-bio">安全研究員，負責頻道轟炸模組與角色混淆系統。發現多項Discord API速率限制漏洞。</div>
+                        <div><span class="badge">exploit</span> <span class="badge">頻道轟炸</span></div>
+                    </div>
+                </div>
+                <div style="margin-top:40px; background:rgba(100,0,0,0.2); padding:25px; border:1px solid #ff4466;">
+                    <p style="font-size:1.3rem;"><i class="fas fa-flag"></i> 兩位開發者皆為ATX核心貢獻者，分別掌管機器人底層與破壞邏輯。使用者ID已驗證。</p>
+                </div>
+            </div>
+
+            <div id="page-join" class="page">
+                <h2><i class="fas fa-user-astronaut"></i> 加入 ATX 團隊</h2>
+                <div class="join-area">
+                    <p style="font-size:1.6rem;">駭客、開發者、壓力測試者招募中</p>
+                    <button class="join-btn" onclick="window.open('https://discord.gg/atx0', '_blank')"><i class="fas fa-bomb"></i> 進入DC <i class="fas fa-bomb"></i></button>
+                    <p style="margin-top:30px;">Discord: <a href="https://discord.gg/atx0" target="_blank">https://discord.gg/atx0</a></p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <i class="fas fa-skull"></i> ATX Nuclear Bot · 僅授權壓力測試 · <a href="https://discord.gg/atx0" target="_blank">官方DC</a> <i class="fas fa-knife"></i>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const overlay = document.getElementById('entryOverlay');
+            const mainContent = document.getElementById('mainContent');
+            const enterBtn = document.getElementById('enterSystemBtn');
+
+            enterBtn.addEventListener('click', function() {
+                overlay.classList.add('hidden');
+                mainContent.classList.add('reveal');
+            });
+
+            const buttons = document.querySelectorAll('.page-btn');
+            const pages = {
+                about: document.getElementById('page-about'),
+                core: document.getElementById('page-core'),
+                commands: document.getElementById('page-commands'),
+                specs: document.getElementById('page-specs'),
+                fulldesc: document.getElementById('page-fulldesc'),
+                data: document.getElementById('page-data'),
+                dev: document.getElementById('page-dev'),
+                join: document.getElementById('page-join')
+            };
+
+            function setActivePage(pageId) {
+                Object.values(pages).forEach(p => p.classList.remove('active-page'));
+                if(pages[pageId]) pages[pageId].classList.add('active-page');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.page === pageId) btn.classList.add('active');
+                });
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.dataset.page;
+                    if(pageId) setActivePage(pageId);
+                });
+            });
+
+            setActivePage('about');
+        })();
+    </script>
 </body>
 </html>
