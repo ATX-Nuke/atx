@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATX · 核爆中隊 官方入口</title>
+    <!-- 引入字型與基礎樣式 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0c0e;
+            background-image: radial-gradient(circle at 30% 10%, rgba(45, 0, 45, 0.5) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(100, 0, 80, 0.3) 0%, transparent 50%);
+            font-family: 'Inter', sans-serif;
+            color: #e2e2e2;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 2rem 0 4rem;
+        }
+
+        /* 頭部區域 */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px #b300b3, 0 0 60px #5a005a;
+            border: 2px solid #a335b3;
+            margin-bottom: 1.8rem;
+        }
+
+        .logo-wrapper img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff44e6;
+        }
+
+        .atx-badge {
+            background: #0d0b16;
+            border: 1px solid #bf40bf;
+            color: #ff9dff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px #c715c7;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(130deg, #ff6bff, #b13eb1, #ff3d9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px #ff0066;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            font-size: 1.3rem;
+            color: #b9b9dc;
+            max-width: 700px;
+            border-bottom: 1px dashed #5f3f6b;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .join-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #5865F2;
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px #5865F2, 0 0 30px #a6238a;
+            transition: 0.2s ease;
+            border: 1px solid #9b84ff;
+            margin-top: 1.2rem;
+        }
+
+        .join-btn:hover {
+            background: #4752c4;
+            box-shadow: 0 10px 30px #7b2ed6, 0 0 40px #ff30b0;
+            transform: scale(1.02);
+        }
+
+        .join-btn img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* 重點指標/破壞力展示 */
+        .stats-panel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem 3.5rem;
+            background: rgba(20, 12, 28, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #7a2a7a;
+            border-radius: 70px;
+            padding: 1.6rem 3rem;
+            margin: 2.5rem 0 2rem;
+            box-shadow: 0 0 35px #990099;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f4b4ff, #d07cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #c09ac7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 介紹卡：兩個機器人 */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 3rem 0 1rem;
+            color: #f0c4f0;
+            text-shadow: 0 0 10px #ff80ff;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #a28ba8;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .bot-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .bot-card {
+            background: rgba(10, 5, 18, 0.85);
+            backdrop-filter: blur(5px);
+            border: 1px solid #c44bc4;
+            border-radius: 40px;
+            padding: 2rem 1.8rem 2rem 1.8rem;
+            flex: 1 1 380px;
+            max-width: 480px;
+            box-shadow: 0 20px 35px #00000099, 0 0 55px #9d2d9d;
+            transition: 0.2s;
+        }
+
+        .bot-card:hover {
+            border-color: #ff80ff;
+            box-shadow: 0 20px 45px #bf32bf;
+        }
+
+        .bot-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bot-name span {
+            background: #28243f;
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            color: #e2b0ff;
+            border: 1px solid #b55ab5;
+        }
+
+        .bot-desc {
+            font-size: 1.1rem;
+            color: #cdc1d9;
+            margin: 1.2rem 0 1.5rem;
+            border-left: 4px solid #b300b3;
+            padding-left: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            background: rgba(255, 230, 255, 0.03);
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #3f2742;
+        }
+
+        .feature-list img {
+            width: 22px;
+            height: 22px;
+            filter: invert(72%) sepia(79%) saturate(2149%) hue-rotate(226deg);
+        }
+
+        .code-snippet {
+            background: #0b0412;
+            border: 1px solid #833b83;
+            border-radius: 24px;
+            padding: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #f0aaf0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            box-shadow: inset 0 0 20px #2e0030;
+        }
+
+        .badge-pro {
+            background: #a020f0;
+            border-radius: 60px;
+            padding: 0.1rem 1rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: black;
+            text-transform: uppercase;
+        }
+
+        .command-hint {
+            color: #ebc0ff;
+            font-weight: 700;
+            background: #2b1d35;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid #c56bc5;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid #522d5e;
+            padding-top: 2.5rem;
+            color: #8b6d97;
+        }
+
+        .discord-link {
+            color: #c57bff;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        .glow {
+            text-shadow: 0 0 8px #ff89ff;
+        }
+
+        /* 背景骷髏裝飾 (純css) */
+        .skull-divider {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            opacity: 0.3;
+            margin: 1rem 0;
+            letter-spacing: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 頭部區域 -->
+        <div class="header">
+            <div class="logo-wrapper">
+                <!-- 使用ATX的實際頭像連結 (與程式碼內一致) -->
+                <img src="https://i.pinimg.com/736x/3e/6c/8d/3e6c8d227acc093252f8a0b6940d40dd.jpg" alt="ATX skull logo">
+            </div>
+            <div class="atx-badge">⚰️ 核 心 中 隊 ⚰️</div>
+            <h1>ATX  NUCLEAR</h1>
+            <div class="subhead">最凶殘的 Discord 核爆機器人 · 不留活口</div>
+            
+            <!-- 主要加入連結 (Discord) -->
+            <a href="https://discord.gg/atx0" class="join-btn" target="_blank" rel="noopener">
+                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/663e5e4f44c68ad5f4b63f34_636e0a6ac3c481f273141736_icon_clyde_white_RGB.svg" alt="Discord">
+                加入 ATX 總部
+            </a>
+
+            <!-- 數據面板（取自程式碼參數） -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-number">18</span>
+                    <span class="stat-label">訊息/頻道</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">60</span>
+                    <span class="stat-label">頻道創造</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">垃圾角色</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">40s</span>
+                    <span class="stat-label">冷卻</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 兩個機器人介紹 (程式碼幾乎相同但分為兩個實例, 我們呈現為變體A / 變體B) -->
+        <div class="section-title">💀 雙 重 毀 滅  💀</div>
+        <div class="section-sub">兩種破壞引擎 · 同樣由 ATX 核心驅動</div>
+
+        <div class="bot-grid">
+            <!-- 機器人 1 - ATX Nuclear v2 (原始) -->
+            <div class="bot-card">
+                <div class="bot-name">
+                    🔥 ATX NUKER 2.0 
+                    <span>public</span>
+                </div>
+                <div class="bot-desc">
+                    全自動伺服器熔化器 · 加入即觸發
+                </div>
+                <ul class="feature-list">
+                    <li><img src="https://cdn.discordapp.com/emojis/1067179646037864498.webp?size=32&quality=lossless" alt="skull"> 60 個亂碼頻道 + 特殊字體名稱</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1251157298570002462.webp?size=32&quality=lossless" alt="hammer"> 批量刪除頻道/角色 (批次60/50)</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1071552015084294195.webp?size=32&quality=lossless" alt="embed"> 富攻擊 Embed + GIF + 宣傳影片</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1263199855110848584.webp?size=32&quality=lossless" alt="ban"> 自動Ban全員 (除了機器人自己)</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1182795633124253806.webp?size=32&quality=lossless" alt="shield"> 白名單保護 (ID: 1480934063362801674)</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1209196344778096650.webp?size=32&quality=lossless" alt="log"> 攻擊日誌頻道 #1482046312479330476</li>
+                </ul>
+                <div class="code-snippet">
+# 觸發指令 .no   |   冷卻40s <br>
+# 自動加入即炸 (白名單除外)<br>
+NEW_GUILD_NAME = "💀ATX NUKED"<br>
+CHANNEL_NAMES = 風格多變的「atx-nuked」<br>
+EMBED 內建影片: https://discord.gg/PayJFpBh5s
+                </div>
+                <div class="command-hint">
+                    .no  — 即 刻 核 爆
+                </div>
+            </div>
+
+            <!-- 機器人 2 - 複製品但標示為 ATX NUCLEAR X (第二份代碼完全相同，但我們展示它的獨立性) -->
+            <div class="bot-card">
+                <div class="bot-name">
+                    ⚡ ATX NUCLEAR X 
+                    <span>elite</span>
+                </div>
+                <div class="bot-desc">
+                    平行運算版 · 雙重任務同時執行
+                </div>
+                <ul class="feature-list">
+                    <li><img src="https://cdn.discordapp.com/emojis/1067179646037864498.webp?size=32&quality=lossless" alt="skull"> 同樣批量刪建頻道＋更名伺服器</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1251157298570002462.webp?size=32&quality=lossless" alt="hammer"> 修改全體綽號為「💀 ATX 🔪」</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1071552015084294195.webp?size=32&quality=lossless" alt="embed"> 進階嵌入循環 x18 (使用 aiohttp)</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1263199855110848584.webp?size=32&quality=lossless" alt="ban"> 超快速BAN人 (分批次非同步)</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1182795633124253806.webp?size=32&quality=lossless" alt="shield"> 白名單迴避 + 邀請者紀錄</li>
+                    <li><img src="https://cdn.discordapp.com/emojis/1209196344778096650.webp?size=32&quality=lossless" alt="log"> 相同的log頻道，集中戰果</li>
+                </ul>
+                <div class="code-snippet">
+# 第二核彈頭 (identical core)<br>
+MESSAGE_REPEAT_COUNT = 18  <br>
+CHANNEL_COUNT = 60  |  BATCH_SIZE 30~100<br>
+# 自動偵測邀請人 (audit log)<br>
+垃圾角色建立: ATX-role-xxx (50個)
+                </div>
+                <div class="command-hint">
+                    .no  — 雙 倍 毀 滅
+                </div>
+            </div>
+        </div>
+
+        <!-- 額外資訊：內部運作特點 -->
+        <div style="margin-top: 3.5rem; background: rgba(0,0,0,0.4); border-radius: 50px; padding: 2rem 2rem; border: 1px solid #7f3f7f;">
+            <h2 style="text-align: center; font-size: 1.9rem; margin-bottom: 1.8rem; color: #f0bef0;">⚙️ 核心機制（兩者共通）</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
+                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">⏱️</div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">批次非同步</div>
+                    <div style="color: #bc9ec2;">批量刪除頻道/角色 配合asyncio.gather，極速執行</div>
+                </div>
+                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
+                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">🔁</div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">冷卻 & 白名單</div>
+                    <div style="color: #bc9ec2;">WHITELIST_GUILD_ID 保護總部；每人40秒限制</div>
+                </div>
+                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
+                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">📹</div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">宣傳影片/GIF</div>
+                    <div style="color: #bc9ec2;">攻擊時附帶 ATX  promo 影片 (cdn連結) 與動態旗幟</div>
+                </div>
+                <div style="flex: 1 1 240px; background: #1f1326; border-radius: 30px; padding: 1.4rem;">
+                    <div style="font-size: 1.7rem; margin-bottom: 0.5rem;">📋</div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">日誌紀錄</div>
+                    <div style="color: #bc9ec2;">每次核爆後傳送伺服器狀態至 Log 頻道</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 展示部分程式碼片段 (強調兩者相同但獨立) -->
+        <div style="margin: 3.5rem 0 1rem;">
+            <div style="background: #110c1a; border-radius: 36px; padding: 1.8rem; border: 1px solid #a14da1;">
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center;">
+                    <div style="font-family: monospace; background: #050108; padding: 1.2rem; border-radius: 24px; flex:2; overflow-x: auto;">
+                        <span style="color:#b380ff;">async def</span> <span style="color:#ffb3ff;">nuke_guild_ultra</span>(guild, ctx=None, inviter=None):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;global is_nuking, current_tasks<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;is_nuking = <span style="color:#8df">True</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;await log_action(guild, inviter)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6f6"># 並發執行 改名 / 換頭像 / 改nick</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;name_task = asyncio.create_task(change_guild_name_ultra(guild, NEW_GUILD_NAME))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;icon_task = asyncio.create_task(change_guild_icon_ultra(guild, AVATAR_URL))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6f6"># 刪除所有頻道 -> 建立60個新頻道 -> 垃圾訊息 -> 角色轟炸 -> ban</span>
+                    </div>
+                    <div style="flex:1; min-width:160px; text-align:center">
+                        <div style="background:#b300b3; width: fit-content; margin:0 auto; padding:0.5rem 2rem; border-radius:60px; font-weight:700;">⬇️ 完全相同</div>
+                        <div style="margin-top:1.2rem; color:#cc99ff;">兩份核彈腳本<br>雙重存在 更難防範</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 再次強調加入連結 -->
+        <div style="text-align: center; margin: 4rem 0 2rem;">
+            <div style="font-size: 1.5rem; margin-bottom: 1.2rem;">💀 <span class="glow">想要擁有 ATX 毀滅力量？</span> 💀</div>
+            <a href="https://discord.gg/atx0" class="join-btn" style="font-size: 1.8rem; padding: 1rem 4rem;" target="_blank">
+                ➤ 加入 ATX 後台 ➤
+            </a>
+            <div style="margin-top: 1.5rem; color:#887a92">點擊連結立即加入 Discord &nbsp; <span style="background:#33223b; padding:0.3rem 1rem; border-radius:30px;">discord.gg/atx0</span></div>
+        </div>
+
+        <!-- 白名單/日誌等額外細節 -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; background: #130d1b; border-radius: 60px; padding: 2rem; margin-top: 3rem;">
+            <div>
+                <span style="color: #c58aff;">⚪ 白名單伺服器 ID</span><br>
+                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px; font-family: monospace;">1480934063362801674</span>
+            </div>
+            <div>
+                <span style="color: #c58aff;">📁 日誌頻道 ID</span><br>
+                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px; font-family: monospace;">1482046312479330476</span>
+            </div>
+            <div>
+                <span style="color: #c58aff;">👑 擁有者標記</span><br>
+                <span style="background: #2f1b38; padding: 0.3rem 1.2rem; border-radius: 30px;">by 7z1e. ATX</span>
+            </div>
+        </div>
+
+        <!-- 頁腳 -->
+        <div class="footer">
+            <p>⚠️ 兩份程式碼均為 ATX 核爆機器人 · 僅供內部展示 ⚠️</p>
+            <p>官方連結 <a href="https://discord.gg/atx0" class="discord-link">https://discord.gg/atx0</a> — 加入取得最新核彈版本</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; ATX 銷毀小隊 · 骷髏之下 寸草不生</p>
+        </div>
+    </div>
+</body>
+</html>
